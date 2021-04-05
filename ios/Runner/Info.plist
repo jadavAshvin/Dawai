@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>Dawai.Om</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(FLUTTER_BUILD_NAME)</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Play using while you are hiking</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Dawai.Om  would like to access your calender</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app requires access to the photo library to upload your profile photo.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>This app attempts to access privacy-sensitive data without a usage description</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Dawai.Om needs Location access to get user current location for login!</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Dawai.Om needs Location access to get user current location for login!</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Your location is required for user location for login</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Dawai.Om needs access to motion data to display steps</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Dawai.Om We need access to photo gallery so you can choose image to set as profile pic</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Speech recognition not yet authorized</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+</dict>
+</plist>

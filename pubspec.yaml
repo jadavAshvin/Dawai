@@ -47,6 +47,7 @@ dev_dependencies:
   pin_code_fields: ^3.0.1
   shared_preferences: ^0.5.3+4
   url_launcher: ^5.7.10
+  flutter_share:
 
 
 # For information on the generic Dart part of this file, see the

@@ -134,6 +134,12 @@
       "languageVersion": "2.1"
     },
     {
+      "name": "flutter_share",
+      "rootUri": "file:///Users/apple/Desktop/Docs/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_share-1.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "flutter_svg",
       "rootUri": "file:///Users/apple/Desktop/Docs/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_svg-0.19.1",
       "packageUri": "lib/",
@@ -590,7 +596,7 @@
       "languageVersion": "2.7"
     }
   ],
-  "generated": "2021-04-06T14:52:43.070299Z",
+  "generated": "2021-04-09T09:50:20.762008Z",
   "generator": "pub",
   "generatorVersion": "2.10.5"
 }

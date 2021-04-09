@@ -26,6 +26,8 @@ import 'package:flutter/material.dart';
 import 'package:dawey/Comman/extensions.dart';
 import 'package:get/get.dart';
 import 'dart:convert';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_share/flutter_share.dart';
 
 class Home extends StatefulWidget {
   final int screenlag;
@@ -377,7 +379,13 @@ class _HomeState extends State<Home> {
           imageWithIcon(getLabel("contactus"), Images.IC_CONTACT, () {
             Get.to(ContactUs());
           }),
-          imageWithIcon(getLabel("share"), Images.IC_SHARE, () {}),
+          imageWithIcon(getLabel("share"), Images.IC_SHARE, () {
+          if(GetPlatform.isAndroid){
+            share("https://play.google.com/store/apps/details?id=com.dawai.om");
+          }else{
+            share("https://play.google.com/store/apps/details?id=com.dawai.om");
+          }
+          }),
           imageWithIcon(getLabel("language"), Images.IC_LABEL, () {
             Get.to(SelectLanguage());
           }),
@@ -412,6 +420,12 @@ class _HomeState extends State<Home> {
     );
   }
 
+  Future<void> share(String url) async {
+    await FlutterShare.share(
+        title: 'Share via',
+        linkUrl: url,
+        chooserTitle: 'Chooser Title');
+  }
   Widget drawerHeader() {
     return DrawerHeader(
       child: Column(

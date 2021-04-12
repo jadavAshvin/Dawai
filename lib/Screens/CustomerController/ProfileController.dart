@@ -22,7 +22,7 @@ class ProfileController extends GetxController {
   var isLoading = false.obs;
   var verifyFlag = "".obs;
   File image;
-  var natimageUploaded = false.obs;
+ // var natimageUploaded = false.obs;
   File profileImage;
   var privacyColor = false.obs;
   var city = "".obs;
@@ -74,14 +74,14 @@ class ProfileController extends GetxController {
           description: '${getLabel("national_Id_required")}');
       return false;
     }
-    if (image == null && screenName != "home") {
+  /*  if (image == null && screenName != "home") {
       mySnackbar(
           title: Pref.getString(Pref.IS_ENGLISH) == "0"
               ? '${getLabel("empty")}'
               : AppConstants.EMPTY_KEY,
           description: '${getLabel("upload_national_id")}');
       return false;
-    }
+    }*/
     if (mrnNoController.text.isEmpty) {
       mySnackbar(
           title: Pref.getString(Pref.IS_ENGLISH) == "0"
@@ -466,7 +466,7 @@ class ProfileController extends GetxController {
     image = file;
     Get.forceAppUpdate();
     if (image != null) {
-      natimageUploaded(true);
+      //natimageUploaded(true);
       updateNationalId(image, getParametersNationalId(), (data) {});
     }
     Get.back();
@@ -476,9 +476,9 @@ class ProfileController extends GetxController {
     var file = await ImagePicker.pickImage(source: ImageSource.gallery);
     image = file;
     Get.forceAppUpdate();
-    natimageUploaded(true);
+  //  natimageUploaded(true);
     if (image != null) {
-      natimageUploaded(true);
+    //  natimageUploaded(true);
       updateNationalId(image, getParametersNationalId(), (data) {});
     }
     update();
@@ -560,15 +560,15 @@ class ProfileController extends GetxController {
       print("Privacy Check" + getprofile.privacyPolicyAgree);
       isChecked(true);
     }
-    if (getProfileResponse.getprofileresult[0].nationalIdFile.isEmpty) {
-      natimageUploaded.value = false;
+  /*  if (getProfileResponse.getprofileresult[0].nationalIdFile.isEmpty) {
+    //  natimageUploaded.value = false;
       update();
     } else {
-      natimageUploaded.value = true;
+     // natimageUploaded.value = true;
       update();
 
       Get.forceAppUpdate();
-    }
+    }*/
 
     print(
         "national file is    ${getProfileResponse.getprofileresult[0].nationalIdFile}");

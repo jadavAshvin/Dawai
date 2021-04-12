@@ -1,5 +1,6 @@
 import 'package:dawey/Comman/app_constants.dart';
 import 'package:dawey/Comman/directional_widget.dart';
+import 'package:dawey/Screens/Comman/f&q.dart';
 import 'package:dawey/Screens/CustomerController/LoginController/loginController.dart';
 import 'package:dawey/Screens/CustomerController/LoginController/loginController.dart';
 import 'package:dawey/Utils/colors.dart';
@@ -50,6 +51,22 @@ class Register extends StatelessWidget {
                             loginController.smbRegister(flag);
                           });
                   }),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  flag == 0
+                      ?  InkWell(
+                    onTap: (){
+                      Get.to(FAQ());
+                    },
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text(
+                    getLabel("Why_register"),
+                    style: textFieldTextBoldStyle(20, black),
+                  ),
+                        ),
+                      ):Container(),
                   SizedBox(
                     height: 20,
                   ),

@@ -383,7 +383,7 @@ class _HomeState extends State<Home> {
           if(GetPlatform.isAndroid){
             share("https://play.google.com/store/apps/details?id=com.dawai.om");
           }else{
-            share("https://play.google.com/store/apps/details?id=com.dawai.om");
+            share("https://apps.apple.com/in/app/dawai-om/id1560939279");
           }
           }),
           imageWithIcon(getLabel("language"), Images.IC_LABEL, () {

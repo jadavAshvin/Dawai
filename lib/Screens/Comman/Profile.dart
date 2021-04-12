@@ -43,9 +43,9 @@ class _ProfileState extends State<Profile> {
     if (widget.screenName == 'home') {
       print('home');
       profileController.setValuesToFields();
-      getPrefValue(Keys.NATIONALI_FILE) == ""
+    /*  getPrefValue(Keys.NATIONALI_FILE) == ""
           ? profileController.natimageUploaded(false)
-          : profileController.natimageUploaded(true);
+          : profileController.natimageUploaded(true);*/
     }
   }
 
@@ -116,10 +116,11 @@ class _ProfileState extends State<Profile> {
                               height: 10,
                             ),
                             setInputNationalId(context),
-                            inputSpaceHeight(),
-                            inputSpaceHeight(),
-                            inputSpaceHeight(),
-                            InkWell(
+
+                       /*
+                        inputSpaceHeight(),
+                        inputSpaceHeight(),
+                       InkWell(
                               onTap: () {
                                 profileController.cameraBottomSheet(
                                   context,
@@ -221,7 +222,7 @@ class _ProfileState extends State<Profile> {
                                   ),
                                 ],
                               ),
-                            ),
+                            ),*/
                             inputSpaceHeight(),
                             inputSpaceHeight(),
                             setInputMRNO(context),

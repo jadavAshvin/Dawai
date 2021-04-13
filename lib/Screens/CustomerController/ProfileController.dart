@@ -66,12 +66,21 @@ class ProfileController extends GetxController {
       abName: getLabel("select_vilayat"));
 
   bool validate(screenName) {
-    if (nationalIdController.text.isEmpty) {
+   /* if (nationalIdController.text.isEmpty) {
       mySnackbar(
           title: Pref.getString(Pref.IS_ENGLISH) == "0"
               ? '${getLabel("empty")}'
               : AppConstants.EMPTY_KEY,
           description: '${getLabel("national_Id_required")}');
+      return false;
+    } */
+      print("nation id legth  is ${nationalIdController.text.length}");
+    if(nationalIdController.text.length<7 || nationalIdController.text.length>10 ){
+      mySnackbar(
+          title: Pref.getString(Pref.IS_ENGLISH) == "0"
+              ? '${getLabel("empty")}'
+              : AppConstants.EMPTY_KEY,
+          description: '${getLabel("national_id_limit")}');
       return false;
     }
   /*  if (image == null && screenName != "home") {
@@ -82,14 +91,21 @@ class ProfileController extends GetxController {
           description: '${getLabel("upload_national_id")}');
       return false;
     }*/
-    if (mrnNoController.text.isEmpty) {
+    if (mrnNoController.text.length<4 ||mrnNoController.text.length>8) {
+      mySnackbar(
+          title: Pref.getString(Pref.IS_ENGLISH) == "0"
+              ? '${getLabel("empty")}'
+              : AppConstants.EMPTY_KEY,
+          description: '${getLabel("file_limit")}');
+      return false;
+    }/*  if (mrnNoController.text.isEmpty) {
       mySnackbar(
           title: Pref.getString(Pref.IS_ENGLISH) == "0"
               ? '${getLabel("empty")}'
               : AppConstants.EMPTY_KEY,
           description: '${getLabel("mRN_No_required")}');
       return false;
-    }
+    }*/
     if (nameController.text.isEmpty) {
       mySnackbar(
           title: Pref.getString(Pref.IS_ENGLISH) == "0"
@@ -197,9 +213,9 @@ class ProfileController extends GetxController {
 
       print("Iamge is $image");
       if (screen == "home") {
-        updateProfile(screenlag);
+    //    updateProfile(screenlag);
       } else {
-        callProfileAPI(screenlag);
+      //  callProfileAPI(screenlag);
         print("iffffffffffff");
         /* if (image == null && profileImage == null) {
           callProfileAPI(screenlag);

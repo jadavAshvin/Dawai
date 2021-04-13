@@ -467,7 +467,7 @@ class ProfileController extends GetxController {
     Get.forceAppUpdate();
     if (image != null) {
       //natimageUploaded(true);
-      updateNationalId(image, getParametersNationalId(), (data) {});
+      //updateNationalId(image, getParametersNationalId(), (data) {});
     }
     Get.back();
   }
@@ -479,7 +479,7 @@ class ProfileController extends GetxController {
   //  natimageUploaded(true);
     if (image != null) {
     //  natimageUploaded(true);
-      updateNationalId(image, getParametersNationalId(), (data) {});
+    //  updateNationalId(image, getParametersNationalId(), (data) {});
     }
     update();
     Get.back();

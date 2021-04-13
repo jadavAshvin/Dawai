@@ -282,6 +282,21 @@ Future<http.Response> updateProfileApi(
     String email_id,
     String nearest,
     String cid}) async {
+
+  print("MRN $MRN");
+  print("firstName $firstName");
+  print("lastName $lastName");
+  print("address $address");
+  print("streetName $streetName");
+  print("wayNumber $wayNumber");
+  print("houseBuilding $houseBuilding");
+  print("apprtment $apprtment");
+  print("city $city");
+  print("governot $governot");
+  print("mobileNo $mobileNo");
+  print("email_id $email_id");
+  print("nearest $nearest");
+  print("cid $cid");
   var client = new http.Client();
   try {
     http.Response data = await client.post(
@@ -304,6 +319,8 @@ Future<http.Response> updateProfileApi(
         "customer_id": "$cid"
       },
     );
+
+    print("update url is ${data.request.url}");
     print("profile response ${data.body}");
     return data;
   } finally {

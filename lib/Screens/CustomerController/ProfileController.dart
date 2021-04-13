@@ -22,7 +22,6 @@ class ProfileController extends GetxController {
   var isLoading = false.obs;
   var verifyFlag = "".obs;
   File image;
- // var natimageUploaded = false.obs;
   File profileImage;
   var privacyColor = false.obs;
   var city = "".obs;

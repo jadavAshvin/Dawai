@@ -65,7 +65,7 @@ class ProfileController extends GetxController {
       abName: getLabel("select_vilayat"));
 
   bool validate(screenName) {
-   /* if (nationalIdController.text.isEmpty) {
+    /* if (nationalIdController.text.isEmpty) {
       mySnackbar(
           title: Pref.getString(Pref.IS_ENGLISH) == "0"
               ? '${getLabel("empty")}'
@@ -73,8 +73,9 @@ class ProfileController extends GetxController {
           description: '${getLabel("national_Id_required")}');
       return false;
     } */
-      print("nation id legth  is ${nationalIdController.text.length}");
-    if(nationalIdController.text.length<7 || nationalIdController.text.length>10 ){
+    print("nation id legth  is ${nationalIdController.text.length}");
+    if (nationalIdController.text.length < 7 ||
+        nationalIdController.text.length > 10) {
       mySnackbar(
           title: Pref.getString(Pref.IS_ENGLISH) == "0"
               ? '${getLabel("empty")}'
@@ -82,7 +83,7 @@ class ProfileController extends GetxController {
           description: '${getLabel("national_id_limit")}');
       return false;
     }
-  /*  if (image == null && screenName != "home") {
+    /*  if (image == null && screenName != "home") {
       mySnackbar(
           title: Pref.getString(Pref.IS_ENGLISH) == "0"
               ? '${getLabel("empty")}'
@@ -90,14 +91,15 @@ class ProfileController extends GetxController {
           description: '${getLabel("upload_national_id")}');
       return false;
     }*/
-    if (mrnNoController.text.length<4 ||mrnNoController.text.length>8) {
+    if (mrnNoController.text.length < 4 || mrnNoController.text.length > 8) {
       mySnackbar(
           title: Pref.getString(Pref.IS_ENGLISH) == "0"
               ? '${getLabel("empty")}'
               : AppConstants.EMPTY_KEY,
           description: '${getLabel("file_limit")}');
       return false;
-    }/*  if (mrnNoController.text.isEmpty) {
+    }
+    /*  if (mrnNoController.text.isEmpty) {
       mySnackbar(
           title: Pref.getString(Pref.IS_ENGLISH) == "0"
               ? '${getLabel("empty")}'
@@ -135,7 +137,7 @@ class ProfileController extends GetxController {
           description: '${getLabel("building_villa_required")}');
       return false;
     }
-   /* if (plotNoController.text.isEmpty) {
+    /* if (plotNoController.text.isEmpty) {
       mySnackbar(
           title: Pref.getString(Pref.IS_ENGLISH) == "0"
               ? '${getLabel("empty")}'
@@ -212,9 +214,9 @@ class ProfileController extends GetxController {
 
       print("Iamge is $image");
       if (screen == "home") {
-    //    updateProfile(screenlag);
+        updateProfile(screenlag);
       } else {
-      //  callProfileAPI(screenlag);
+        callProfileAPI(screenlag);
         print("iffffffffffff");
         /* if (image == null && profileImage == null) {
           callProfileAPI(screenlag);
@@ -491,10 +493,10 @@ class ProfileController extends GetxController {
     var file = await ImagePicker.pickImage(source: ImageSource.gallery);
     image = file;
     Get.forceAppUpdate();
-  //  natimageUploaded(true);
-    if (image != null) {
     //  natimageUploaded(true);
-    //  updateNationalId(image, getParametersNationalId(), (data) {});
+    if (image != null) {
+      //  natimageUploaded(true);
+      //  updateNationalId(image, getParametersNationalId(), (data) {});
     }
     update();
     Get.back();
@@ -575,7 +577,7 @@ class ProfileController extends GetxController {
       print("Privacy Check" + getprofile.privacyPolicyAgree);
       isChecked(true);
     }
-  /*  if (getProfileResponse.getprofileresult[0].nationalIdFile.isEmpty) {
+    /*  if (getProfileResponse.getprofileresult[0].nationalIdFile.isEmpty) {
     //  natimageUploaded.value = false;
       update();
     } else {

@@ -17,6 +17,8 @@ import 'package:get/get.dart';
 import 'package:dawey/Utils/mySnackbar.dart';
 
 class ProfileController extends GetxController {
+  var formKey = GlobalKey<FormState>().obs;
+  var autoValidate = false.obs;
   var isChecked = false.obs;
   final FocusNode focus = FocusNode();
   var isLoading = false.obs;
@@ -83,6 +85,7 @@ class ProfileController extends GetxController {
           description: '${getLabel("national_id_limit")}');
       return false;
     }
+
     /*  if (image == null && screenName != "home") {
       mySnackbar(
           title: Pref.getString(Pref.IS_ENGLISH) == "0"
@@ -99,6 +102,7 @@ class ProfileController extends GetxController {
           description: '${getLabel("file_limit")}');
       return false;
     }
+
     /*  if (mrnNoController.text.isEmpty) {
       mySnackbar(
           title: Pref.getString(Pref.IS_ENGLISH) == "0"
@@ -115,6 +119,7 @@ class ProfileController extends GetxController {
           description: '${getLabel("name_required")}');
       return false;
     }
+
     if (mobileNoController.text.isEmpty) {
       mySnackbar(
           title: Pref.getString(Pref.IS_ENGLISH) == "0"
@@ -123,6 +128,7 @@ class ProfileController extends GetxController {
           description: '${getLabel("mobile_No_required")}');
       return false;
     }
+
     if (emailController.text.isEmail == false &&
         emailController.text.isNotEmpty) {
       mySnackbar(title: 'Invalid', description: 'Email is Invalid');
@@ -137,6 +143,7 @@ class ProfileController extends GetxController {
           description: '${getLabel("building_villa_required")}');
       return false;
     }
+
     /* if (plotNoController.text.isEmpty) {
       mySnackbar(
           title: Pref.getString(Pref.IS_ENGLISH) == "0"
@@ -153,6 +160,7 @@ class ProfileController extends GetxController {
           description: '${getLabel("delivery_address_required")}');
       return false;
     }
+
     if (wayNoController.text.isEmpty) {
       mySnackbar(
           title: Pref.getString(Pref.IS_ENGLISH) == "0"
@@ -193,12 +201,39 @@ class ProfileController extends GetxController {
           description: '${getLabel("privacy_policy_error")}');
       return false;
     }
-    // if (nearestLandmarkController.text.isEmpty) {
-    //   mySnackbar(title: '${getLabel("empty")}', description: '${getLabel("nearest_landmark_required\r\n")}');
-    //   return false;
-    // }
 
     return true;
+  }
+
+  void validateInputs(BuildContext context, int screenlag, String screen) {
+    if (formKey.value.currentState.validate()) {
+      formKey.value.currentState.save();
+      if (selectedValue.name == "'Ibri" ||
+          selectedValue.name == "Select Wilayat" ||
+          selectedValue.name == "اختر ولاية") {
+        mySnackbar(
+            title: Pref.getString(Pref.IS_ENGLISH) == "0"
+                ? '${getLabel("empty")}'
+                : AppConstants.EMPTY_KEY,
+            description: '${getLabel("wilayat_required")}');
+      } else if (isChecked.value == false) {
+        mySnackbar(
+            title: Pref.getString(Pref.IS_ENGLISH) == "0"
+                ? '${getLabel("empty")}'
+                : AppConstants.EMPTY_KEY,
+            description: '${getLabel("privacy_policy_error")}');
+      } else {
+        setPrefValue(
+            Keys.NAME, '${nameController.text} ${lastNameController.text}');
+        if (screen == "home") {
+          updateProfile(screenlag);
+        } else {
+          callProfileAPI(screenlag);
+        }
+      }
+    } else {
+      autoValidate.value = true;
+    }
   }
 
   @override
@@ -230,6 +265,8 @@ class ProfileController extends GetxController {
       }
     }
   }
+
+  /*======================== Error validation ======================*/
 
   smbVerify(
     int screenlag,

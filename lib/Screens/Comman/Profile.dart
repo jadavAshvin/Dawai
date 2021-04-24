@@ -9,6 +9,7 @@ import 'package:dawey/Models/cityName.dart';
 import 'package:dawey/Screens/Comman/privacyPolicy.dart';
 import 'package:dawey/Screens/CustomerController/ProfileController.dart';
 import 'package:dawey/Utils/colors.dart';
+import 'package:dawey/Utils/constant.dart';
 import 'package:dawey/Utils/images.dart';
 import 'package:dawey/Widget/BackgroundWidget.dart';
 import 'package:dawey/Widget/button.dart';
@@ -86,6 +87,7 @@ class _ProfileState extends State<Profile> {
       },
       child: DirectionalWidget(
         child: Scaffold(
+          key:  profileController.formKey.value,
           backgroundColor: white,
           body: BackgroundWidget(
             child: SafeArea(
@@ -98,204 +100,214 @@ class _ProfileState extends State<Profile> {
                       Padding(
                         padding: const EdgeInsets.only(
                             top: 10, left: 30, right: 30, bottom: 80),
-                        child: Column(
-                          // crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            /*  Row(
+                        child: Obx((){
+                          return Form(
+                            key: profileController.formKey.value,
+                            autovalidate: profileController.autoValidate.value,
+                            child: Column(
+                              // crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Expanded(
-                                  child: setInputNationalId(context),
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                btnUpload(context),
-                              ],
-                            ),*/
-                            SizedBox(
-                              height: 10,
-                            ),
-                            setInputNationalId(context),
-
-                       /*
-                        inputSpaceHeight(),
-                        inputSpaceHeight(),
-                       InkWell(
-                              onTap: () {
-                                profileController.cameraBottomSheet(
-                                  context,
-                                );
-                              },
-                              child: Column(
+                                /*  Row(
                                 children: [
-                                  Row(
-                                    children: [
-                                      InkWell(
-                                        onTap: () {
-                                          imageShowDialog();
-                                        },
-                                        child: Container(
-                                          padding: const EdgeInsets.all(5.0),
-                                          decoration: BoxDecoration(
-                                              border: Border.all(
-                                                  style: BorderStyle.none,
-                                                  width: 1,
-                                                  color: black),
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          child: profileController.image == null
-                                              ? FadeInImage.assetNetwork(
-                                                  placeholder: Images.MAN,
-                                                  image: getPrefValue(
-                                                      Keys.NATIONALI_FILE),
-                                                  // .replaceAll('\\', '//'),
-                                                  fit: BoxFit.contain,
-                                                  width: 50.0,
-                                                  height: 32.0,
-                                                )
-                                              : Image.file(
-                                                  profileController.image,
-                                                  fit: BoxFit.contain,
-                                                  width: 32.0,
-                                                  height: 32.0,
-                                                ),
+                                  Expanded(
+                                    child: setInputNationalId(context),
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  btnUpload(context),
+                                ],
+                              ),*/
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                setInputNationalId(context),
+
+                                /*
+                          inputSpaceHeight(),
+                          inputSpaceHeight(),
+                       InkWell(
+                                onTap: () {
+                                  profileController.cameraBottomSheet(
+                                    context,
+                                  );
+                                },
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                            imageShowDialog();
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.all(5.0),
+                                            decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    style: BorderStyle.none,
+                                                    width: 1,
+                                                    color: black),
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            child: profileController.image == null
+                                                ? FadeInImage.assetNetwork(
+                                                    placeholder: Images.MAN,
+                                                    image: getPrefValue(
+                                                        Keys.NATIONALI_FILE),
+                                                    // .replaceAll('\\', '//'),
+                                                    fit: BoxFit.contain,
+                                                    width: 50.0,
+                                                    height: 32.0,
+                                                  )
+                                                : Image.file(
+                                                    profileController.image,
+                                                    fit: BoxFit.contain,
+                                                    width: 32.0,
+                                                    height: 32.0,
+                                                  ),
+                                          ),
                                         ),
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Expanded(
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              border: Border.all(
-                                                  style: BorderStyle.none,
-                                                  width: 1,
-                                                  color: black),
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Obx(() => Flexible(
-                                                      child: Text(
-                                                        profileController
-                                                                .natimageUploaded
-                                                                .value
-                                                            ? Pref.getString(Pref
-                                                                        .IS_ENGLISH) ==
-                                                                    "0"
-                                                                ? getLabel(
-                                                                    "upload_national_id")
-                                                                : getLabel(
-                                                                    "uploaded_national_id")
-                                                            : getLabel(
-                                                                "upload_your_national_id"),
-                                                        style:
-                                                            textFieldTextBoldStyle(
-                                                                18, black),
-                                                      ),
-                                                    )),
-                                                Obx(
-                                                  () => profileController
-                                                          .natimageUploaded
-                                                          .value
-                                                      ? Icon(
-                                                          Icons
-                                                              .done_outline_rounded,
-                                                          color: Colors.red,
-                                                        )
-                                                      : Icon(Icons.cancel),
-                                                ),
-                                              ],
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Expanded(
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    style: BorderStyle.none,
+                                                    width: 1,
+                                                    color: black),
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Obx(() => Flexible(
+                                                        child: Text(
+                                                          profileController
+                                                                  .natimageUploaded
+                                                                  .value
+                                                              ? Pref.getString(Pref
+                                                                          .IS_ENGLISH) ==
+                                                                      "0"
+                                                                  ? getLabel(
+                                                                      "upload_national_id")
+                                                                  : getLabel(
+                                                                      "uploaded_national_id")
+                                                              : getLabel(
+                                                                  "upload_your_national_id"),
+                                                          style:
+                                                              textFieldTextBoldStyle(
+                                                                  18, black),
+                                                        ),
+                                                      )),
+                                                  Obx(
+                                                    () => profileController
+                                                            .natimageUploaded
+                                                            .value
+                                                        ? Icon(
+                                                            Icons
+                                                                .done_outline_rounded,
+                                                            color: Colors.red,
+                                                          )
+                                                        : Icon(Icons.cancel),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  Divider(
-                                    color: black,
-                                  ),
-                                ],
-                              ),
-                            ),*/
-                            inputSpaceHeight(),
-                            inputSpaceHeight(),
-                            setInputMRNO(context),
-                            inputSpaceHeight(),
-                            setNameView(context),
-                            setLastView(context),
-                            inputSpaceHeight(),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: setMobileView(context),
+                                      ],
+                                    ),
+                                    Divider(
+                                      color: black,
+                                    ),
+                                  ],
                                 ),
+                              ),*/
+                                inputSpaceHeight(),
+                                inputSpaceHeight(),
+                                setInputMRNO(context),
+                                inputSpaceHeight(),
+                                setNameView(context),
+                                setLastView(context),
+                                inputSpaceHeight(),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: setMobileView(context),
+                                    ),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    btnVerified(context)
+                                  ],
+                                ),
+                                inputSpaceHeight(),
+                                setEmailView(context),
+                                inputSpaceHeight(),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: setBuildingVillaView(context),
+                                    ),
+                                    Expanded(
+                                      child: setPlotNoView(context),
+                                    ),
+                                  ],
+                                ),
+                                setDeliveryAddressView(context),
+                                inputSpaceHeight(),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: setWayNoView(context),
+                                    ),
+                                    Expanded(
+                                      child: setStreetNameView(context),
+                                    ),
+                                  ],
+                                ),
+                                inputSpaceHeight(),
+                                inputSpaceHeight(),
+                                setNearestView(context),
+                                inputSpaceHeight(),
+                                setGovernorateView(context),
+                                inputSpaceHeight(),
+                                setDropDownWilayat(context),
+                                // inputSpaceHeight(),
+                                setCheckBoxView(),
                                 SizedBox(
-                                  width: 5,
+                                  height: 20,
                                 ),
-                                btnVerified(context)
-                              ],
-                            ),
-                            inputSpaceHeight(),
-                            setEmailView(context),
-                            inputSpaceHeight(),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: setBuildingVillaView(context),
-                                ),
-                                Expanded(
-                                  child: setPlotNoView(context),
-                                ),
-                              ],
-                            ),
-                            setDeliveryAddressView(context),
-                            inputSpaceHeight(),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: setWayNoView(context),
-                                ),
-                                Expanded(
-                                  child: setStreetNameView(context),
-                                ),
-                              ],
-                            ),
-                            inputSpaceHeight(),
-                            inputSpaceHeight(),
-                            setNearestView(context),
-                            inputSpaceHeight(),
-                            setGovernorateView(context),
-                            inputSpaceHeight(),
-                            setDropDownWilayat(context),
-                            // inputSpaceHeight(),
-                            setCheckBoxView(),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            Obx(() {
-                              return profileController.isLoading.value
-                                  ? CupertinoActivityIndicator(
-                                      radius: 18,
-                                    )
-                                  : CustomButton(
+                                Obx(() {
+                                  return profileController.isLoading.value
+                                      ? CupertinoActivityIndicator(
+                                    radius: 18,
+                                  )
+                                      : CustomButton(
                                       widget.screenName == 'home'
                                           ? getLabel("updates")
                                           : Pref.getString(Pref.IS_ENGLISH) ==
-                                                  "0"
-                                              ? getLabel("saves")
-                                              : "حفظ", () {
-                                      profileController.smbSave(
-                                          widget.screenlag, widget.screenName);
-                                    });
-                            }),
-                          ],
-                        ),
+                                          "0"
+                                          ? getLabel("saves")
+                                          : "حفظ", () {
+                                    profileController.validateInputs(
+                                        context, widget.screenlag, widget.screenName);
+
+                                    /*    profileController.smbSave(
+                                            widget.screenlag, widget.screenName);*/
+                                  });
+                                }),
+                              ],
+                            ),
+                          );
+                        })
+                        ,
                       )
                     ],
                   ),
@@ -420,38 +432,46 @@ class _ProfileState extends State<Profile> {
 
   Widget setInputNationalId(BuildContext context) {
     return Container(
-        height: 50.0,
         child: TextFormField(
           maxLines: 1,
           //  readOnly: widget.screenName == "home" ? true : false,
           style: textFieldTextStyle(18, black),
           keyboardType: TextInputType.number,
           enabled: true,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           controller: profileController.nationalIdController,
           textInputAction: TextInputAction.next,
           decoration: InputDecoration(
               hintStyle: TextStyle(color: black),
               labelText: getLabel("national_id"),
               //   hintText: getLabel("national_id"),
-              contentPadding: EdgeInsets.all(5)),
+              contentPadding: EdgeInsets.all(0)
+          ),
           onFieldSubmitted: (_) => profileController.focus.nextFocus(),
+          validator: (text){
+            if (text.length < 7 ||
+                text.length > 10)
+              return '${getLabel("national_id_limit")}';
+            else
+              return null;
+          },
           onChanged: (text) {
-            print(profileController.nationalIdController.text);
           },
         ));
   }
 
   Widget setInputMRNO(BuildContext context) {
     return Container(
-        height: 50.0,
         child: TextFormField(
           maxLines: 1,
           // readOnly:  profileController.mrnNoController.text.isEmpty ? true : false,
           style: textFieldTextStyle(16, black),
           keyboardType: TextInputType.number,
           enabled: true,
+          autocorrect: false,
           // profileController.mrnNoController.text.isEmpty ? true : false,
           controller: profileController.mrnNoController,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           textInputAction: TextInputAction.next,
           decoration: InputDecoration(
               labelText: getLabel("mrn_no"),
@@ -459,18 +479,25 @@ class _ProfileState extends State<Profile> {
               hintStyle: TextStyle(color: black),
               contentPadding: EdgeInsets.all(5)),
           onFieldSubmitted: (_) => profileController.focus.nextFocus(),
+          validator: (text){
+            if (text.length < 4 || text.length > 8)
+              return '${getLabel("file_limit")}';
+            else
+              return null;
+          },
           onChanged: (text) {},
         ));
   }
 
   Widget setNameView(BuildContext context) {
     return Container(
-        height: 50.0,
         child: TextFormField(
           maxLines: 1,
           style: textFieldTextStyle(16, black),
           keyboardType: TextInputType.text,
+          autocorrect: false,
           controller: profileController.nameController,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           textInputAction: TextInputAction.next,
           decoration: InputDecoration(
               labelText: getLabel("mobile"),
@@ -478,18 +505,24 @@ class _ProfileState extends State<Profile> {
               hintStyle: TextStyle(color: black),
               contentPadding: EdgeInsets.all(5)),
           onFieldSubmitted: (_) => profileController.focus.nextFocus(),
+          validator: (text){
+            if (text.isEmpty)
+              return '${getLabel("name_required")}';
+            else
+              return null;
+          },
           onChanged: (text) {},
         ));
   }
 
   Widget setLastView(BuildContext context) {
     return Container(
-        height: 50.0,
         child: TextFormField(
           maxLines: 1,
           style: textFieldTextStyle(16, black),
           keyboardType: TextInputType.text,
           controller: profileController.lastNameController,
+          autocorrect: false,
           textInputAction: TextInputAction.next,
           decoration: InputDecoration(
               labelText: getLabel("lastname"),
@@ -503,12 +536,13 @@ class _ProfileState extends State<Profile> {
 
   Widget setMobileView(BuildContext context) {
     return Container(
-        height: 50.0,
         child: TextFormField(
           maxLines: 1,
           style: textFieldTextStyle(16, black),
           keyboardType: TextInputType.number,
+          autocorrect: false,
           controller: profileController.mobileNoController,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           textInputAction: TextInputAction.next,
           decoration: InputDecoration(
               labelText: getLabel("mobile_no"),
@@ -516,6 +550,12 @@ class _ProfileState extends State<Profile> {
               hintStyle: TextStyle(color: black),
               contentPadding: EdgeInsets.all(5)),
           onFieldSubmitted: (_) => profileController.focus.nextFocus(),
+          validator: (text){
+            if (text.isEmpty)
+              return '${getLabel("mobile_No_required")}';
+            else
+              return null;
+          },
           onChanged: (text) {
             if (getPrefValue(Keys.MOBILE) == text) {
               print("sameee");
@@ -532,12 +572,12 @@ class _ProfileState extends State<Profile> {
 
   Widget setEmailView(BuildContext context) {
     return Container(
-        height: 50.0,
         child: TextFormField(
           maxLines: 1,
           style: textFieldTextStyle(16, black),
           keyboardType: TextInputType.emailAddress,
           controller: profileController.emailController,
+          autocorrect: false,
           textInputAction: TextInputAction.next,
           decoration: InputDecoration(
               labelText: getLabel("email_id"),
@@ -545,6 +585,7 @@ class _ProfileState extends State<Profile> {
               hintStyle: TextStyle(color: black),
               contentPadding: EdgeInsets.all(5)),
           onFieldSubmitted: (_) => profileController.focus.nextFocus(),
+
           onChanged: (text) {},
         ));
   }
@@ -612,11 +653,12 @@ class _ProfileState extends State<Profile> {
 
   Widget setDeliveryAddressView(BuildContext context) {
     return Container(
-        height: 50.0,
         child: TextFormField(
           style: textFieldTextStyle(16, black),
           keyboardType: TextInputType.text,
           controller: profileController.deliveryAddressController,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          autocorrect: false,
           textInputAction: TextInputAction.next,
           decoration: InputDecoration(
               labelText: getLabel("del_add"),
@@ -624,17 +666,24 @@ class _ProfileState extends State<Profile> {
               hintStyle: TextStyle(color: black),
               contentPadding: EdgeInsets.all(5)),
           onFieldSubmitted: (_) => profileController.focus.nextFocus(),
+          validator: (text){
+            if (text.isEmpty)
+              return '${getLabel("delivery_address_required")}';
+            else
+              return null;
+          },
           onChanged: (text) {},
         ));
   }
 
   Widget setWayNoView(BuildContext context) {
     return Container(
-        height: 50.0,
         child: TextFormField(
           style: textFieldTextStyle(16, black),
           keyboardType: TextInputType.number,
           controller: profileController.wayNoController,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          autocorrect: false,
           textInputAction: TextInputAction.next,
           decoration: InputDecoration(
               labelText: getLabel("way_no"),
@@ -642,13 +691,18 @@ class _ProfileState extends State<Profile> {
               hintStyle: TextStyle(color: black),
               contentPadding: EdgeInsets.all(5)),
           onFieldSubmitted: (_) => profileController.focus.nextFocus(),
+          validator: (text){
+            if (text.isEmpty)
+              return '${getLabel("way_No_required")}';
+            else
+              return null;
+          },
           onChanged: (text) {},
         ));
   }
 
   Widget setStreetNameView(BuildContext context) {
     return Container(
-        height: 50.0,
         child: TextFormField(
           style: textFieldTextStyle(16, black),
           keyboardType: TextInputType.text,
@@ -666,25 +720,32 @@ class _ProfileState extends State<Profile> {
 
   Widget setBuildingVillaView(BuildContext context) {
     return Container(
-        height: 50.0,
         child: TextFormField(
           style: textFieldTextStyle(16, black),
           keyboardType: TextInputType.number,
           controller: profileController.buildingController,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          autocorrect: false,
           textInputAction: TextInputAction.next,
           decoration: InputDecoration(
+
               labelText: getLabel("building_villa"),
               //  hintText: getLabel("building_villa"),
               hintStyle: TextStyle(color: black),
               contentPadding: EdgeInsets.all(5)),
           onFieldSubmitted: (_) => profileController.focus.nextFocus(),
+          validator: (text){
+            if (text.isEmpty)
+              return '${getLabel("building_villa_required")}';
+            else
+              return null;
+          },
           onChanged: (text) {},
         ));
   }
 
   Widget setPlotNoView(BuildContext context) {
     return Container(
-        height: 50.0,
         child: TextFormField(
           style: textFieldTextStyle(16, black),
           keyboardType: TextInputType.number,
@@ -702,7 +763,6 @@ class _ProfileState extends State<Profile> {
 
   Widget setGovernorateView(BuildContext context) {
     return Container(
-        height: 50.0,
         child: TextFormField(
           style: textFieldTextStyle(16, black),
           keyboardType: TextInputType.text,

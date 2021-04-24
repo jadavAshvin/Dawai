@@ -13,6 +13,7 @@ class LangController extends GetxController {
   callLangAPI(String code) async {
     isLoading.value = true;
     getLabelApi(code).then((LangData value) async {
+      print("@@@@@@ ${value}");
       if (value != null) {
         for (int i = 0; i < value.language.length; i++) {
           await setLabel(value.language[i].key, value.language[i].value);

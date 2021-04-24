@@ -172,8 +172,8 @@ Future<LangData> getLabelApi(param) async {
     http.Response response = await client.post(
       BASE_URL + LANGUAGE + "?code=" + param,
     );
-    print("Login url  ${response.request.url}");
-    print("Login response  ${response.body}");
+    print("Langauge url  ${response.request.url}");
+    print("Langauge response  ${response.body}");
     if (response.statusCode == 200) {
       String decode = utf8.decode(response.bodyBytes);
       return LangData.fromMap(json.decode(decode));
@@ -215,6 +215,8 @@ Future<http.Response> registerApi(param, lat_long) async {
         "lat_long": "$lat_long",
       },
     );
+    print("register url ${data.request.url}");
+    print("register param is ${param}  ${lat_long}");
     print("register response is ${data.body}");
     return data;
   } finally {
@@ -238,6 +240,20 @@ Future<http.Response> profileApi(
     String email_id,
     String nearest) async {
   var client = new http.Client();
+  print("nationalId: $nationalId");
+  print("MRN : $MRN");
+  print("firstName : $firstName");
+  print("lastName : $lastName");
+  print("address : $address");
+  print("streetName : $streetName");
+  print("wayNumber : $wayNumber");
+  print("houseBuilding : $houseBuilding");
+  print("apprtment : $apprtment");
+  print("city : $city");
+  print("governot : $governot");
+  print("mobileNo : $mobileNo");
+  print("email_id : $email_id");
+  print("nearest : $nearest");
   try {
     http.Response data = await client.post(
       BASE_URL + PROFILE,
@@ -258,6 +274,7 @@ Future<http.Response> profileApi(
         "nearest_landmark": "$nearest",
       },
     );
+    print("profile api  ${data.request.url}");
     print("profile response ${data.body}");
     return data;
   } finally {

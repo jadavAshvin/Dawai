@@ -398,6 +398,7 @@ class _MyOrderState extends State<MyOrder> {
   }
 
   Widget setTheServiceView(BuildContext context) {
+    print("get service is ${getLabel("service_charge")}");
     return Obx(
       () => Container(
         child: Row(
@@ -440,7 +441,7 @@ class _MyOrderState extends State<MyOrder> {
             ),
             Flexible(
               child: Text(
-                getLabel("service_charge"),
+                getLabel("service_charge").replaceAll("/n ", "\n"),
                 style: textFieldTextStyle(16, black),
               ),
             ),

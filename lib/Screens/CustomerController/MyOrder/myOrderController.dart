@@ -45,7 +45,9 @@ class MyOrderController extends GetxController {
   void onInit() {
     super.onInit();
     //pharmacy.add(PharmacyResult(pharmacyname: 'Select Nearest Pharmacy'));
-    getPharmacy();
+    Future.delayed(const Duration(seconds: 2), () {
+      getPharmacy(getPrefValue(Keys.CITY));
+    });
   }
 
   bool validate() {
@@ -99,8 +101,8 @@ class MyOrderController extends GetxController {
     return true;
   }
 
-  void getPharmacy() async {
-    getPharmacyApi().then((data) {
+  void getPharmacy(String city) async {
+    getPharmacyApi(city).then((data) {
       // ignore: deprecated_member_use
       phararmacyList.value = data.result;
     });
@@ -109,7 +111,28 @@ class MyOrderController extends GetxController {
 
   smbPlaceOrder(int screenlag) {
     if (validate()) {
-      callOrderPlacedAPI(screenlag);
+      Get.dialog(
+        AlertDialog(
+          title: Text(getLabel("are_you_sure")),
+          content: Text(getLabel("are_you_sure_you_want")),
+          actions: <Widget>[
+            FlatButton(
+              child: Text(getLabel("cancel")),
+              onPressed: () {
+                Get.back();
+              },
+            ),
+            FlatButton(
+              child: Text(getLabel("confirm")),
+              onPressed: () {
+                callOrderPlacedAPI(screenlag);
+              },
+            )
+          ],
+        ),
+        barrierDismissible: false,
+      );
+
     }
   }
 

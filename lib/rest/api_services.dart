@@ -669,12 +669,13 @@ Future<http.Response> getPharmacyApi() async {
   }
 }*/
 
-Future<PharmacyResponse> getPharmacyApi() async {
+Future<PharmacyResponse> getPharmacyApi(city) async {
   var client = new http.Client();
   try {
     http.Response response = await client.get(
-      BASE_URL + PHARMACY,
+      BASE_URL + PHARMACY+"?city="+city,
     );
+    print("pharmacy URL   ${response.request.url}");
     print("pharmacy response  ${response.body}");
     if (response.statusCode == 200) {
       String decode = utf8.decode(response.bodyBytes);

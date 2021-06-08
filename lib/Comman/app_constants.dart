@@ -137,6 +137,7 @@ clearAllData() {
   setPrefValue(Keys.NUMBER_VERIFY_FLAG, "");
   setPrefValue(Keys.IMG_URL, "");
   setPrefValue(Keys.NATIONALI_FILE, "");
+  setPrefValue(Keys.CITY, "");
   AppConstants.NATIONALID = "";
   AppConstants.MRNNO = "";
   AppConstants.NAME = "";

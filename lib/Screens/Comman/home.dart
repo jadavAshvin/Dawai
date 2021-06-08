@@ -13,6 +13,7 @@ import 'package:dawey/Screens/Comman/select_lang.dart';
 import 'package:dawey/Screens/CustomeScreens/myOrder.dart';
 import 'package:dawey/Screens/CustomeScreens/splash.dart';
 import 'package:dawey/Screens/CustomerController/HomeController/home_content_controller.dart';
+import 'package:dawey/Screens/CustomerController/MyOrder/myOrderController.dart';
 import 'package:dawey/Screens/DeliveryBoyScreen/DeliveryBoyProfile.dart';
 import 'package:dawey/Screens/DeliveryBoyScreen/myTask.dart';
 import 'package:dawey/Utils/colors.dart';
@@ -76,6 +77,10 @@ class _HomeState extends State<Home> {
     Get.lazyPut<HomeContentController>(() => HomeContentController(),
         fenix: true);
     Get.find<HomeContentController>().getProfileCall();
+    Future.delayed(const Duration(seconds: 2), () {
+      Get.find<MyOrderController>().getPharmacy(getPrefValue(Keys.CITY));
+    });
+
   }
 
   @override

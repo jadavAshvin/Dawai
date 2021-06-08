@@ -19,6 +19,7 @@ import 'package:dawey/Models/pharmacyResponse.dart' as Pharmacy;
 class MyOrder extends StatefulWidget {
   final int screenlag;
   final String screenName;
+
   MyOrder(this.screenlag, this.screenName);
 
   @override
@@ -45,29 +46,27 @@ class _MyOrderState extends State<MyOrder> {
 
   @override
   Widget build(BuildContext context) {
-
     return widget.screenName == "dash"
         ? Scaffold(
-          backgroundColor: Colors.transparent,
-          body: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-
-                topImage(),
-                Container(
-                  transform: Matrix4.translationValues(0.0, -150.0, 0.0),
-                  child: Obx(() => myOrderController.isLoading.value
-                      ? ProgressCircule()
-                      : checkFromScreen(widget.screenName)),
-                ),
-              ],
+            backgroundColor: Colors.transparent,
+            body: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  topImage(),
+                  Container(
+                    transform: Matrix4.translationValues(0.0, -150.0, 0.0),
+                    child: Obx(() => myOrderController.isLoading.value
+                        ? ProgressCircule()
+                        : checkFromScreen(widget.screenName)),
+                  ),
+                ],
+              ),
             ),
-          ),
-        )
+          )
         : DirectionalWidget(
-          child: Scaffold(
-     // backgroundColor: Colors.transparent,
+            child: Scaffold(
+              // backgroundColor: Colors.transparent,
               body: BackgroundWidget(
                 child: SingleChildScrollView(
                   child: Column(
@@ -86,7 +85,7 @@ class _MyOrderState extends State<MyOrder> {
                 ),
               ),
             ),
-        );
+          );
   }
 
   Widget checkFromScreen(screen) {
@@ -110,7 +109,7 @@ class _MyOrderState extends State<MyOrder> {
         ),
         Padding(
           padding: EdgeInsets.only(left: 30, right: 30),
-          child:  setAddressView(context),
+          child: setAddressView(context),
         ),
         SizedBox(
           height: 10,
@@ -190,7 +189,11 @@ class _MyOrderState extends State<MyOrder> {
               labelText: getLabel("national_id"),
               hintStyle: TextStyle(color: black),
               hintText: getLabel("national_id"),
-              contentPadding: EdgeInsets.only(right: 5,top: 5,bottom: 5,)),
+              contentPadding: EdgeInsets.only(
+                right: 5,
+                top: 5,
+                bottom: 5,
+              )),
           onFieldSubmitted: (_) => myOrderController.focus.nextFocus(),
           onChanged: (text) {},
         ));
@@ -211,7 +214,7 @@ class _MyOrderState extends State<MyOrder> {
               labelText: getLabel("mrn_no"),
               hintText: getLabel("mrn_no"),
               hintStyle: TextStyle(color: black),
-              contentPadding: EdgeInsets.only(right: 5,top: 5,bottom: 5)),
+              contentPadding: EdgeInsets.only(right: 5, top: 5, bottom: 5)),
           onFieldSubmitted: (_) => myOrderController.focus.nextFocus(),
           onChanged: (text) {},
         ));
@@ -228,11 +231,11 @@ class _MyOrderState extends State<MyOrder> {
           controller: myOrderController.addCommentController,
           textInputAction: TextInputAction.newline,
           decoration: InputDecoration(
-            alignLabelWithHint: true,
+              alignLabelWithHint: true,
               labelStyle: TextStyle(color: black),
-          //    labelText: getLabel("any_comments"),
+              //    labelText: getLabel("any_comments"),
               labelText: getLabel("any_comments"),
-              contentPadding: EdgeInsets.only(right: 5,top: 5,bottom: 5)),
+              contentPadding: EdgeInsets.only(right: 5, top: 5, bottom: 5)),
           onFieldSubmitted: (_) => myOrderController.focus.unfocus(),
           onChanged: (text) {},
         ));
@@ -334,9 +337,10 @@ class _MyOrderState extends State<MyOrder> {
                         hint: Text(
                           myOrderController.selectedValue == null
                               ? ""
-                         : Pref.getString(Pref.IS_ENGLISH) == "0"
-                              ? myOrderController.selectedValue.pharmacyname
-                              : myOrderController.selectedValue.pharmacynameAb,
+                              : Pref.getString(Pref.IS_ENGLISH) == "0"
+                                  ? myOrderController.selectedValue.pharmacyname
+                                  : myOrderController
+                                      .selectedValue.pharmacynameAb,
                           style: textFieldTextStyle(16, black),
                         ),
                         items: myOrderController.phararmacyList
@@ -433,7 +437,7 @@ class _MyOrderState extends State<MyOrder> {
                       myOrderController.serviceISChecked.value = isChecked;
                     },
                   ),
-                ),
+                  ),
               ),
             ),
             SizedBox(

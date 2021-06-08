@@ -18,6 +18,7 @@ class MyTaskController extends GetxController {
   var pendingCount = 0.obs;
   var newCount = 0.obs;
   DateTime now = DateTime.now();
+
   // ignore: deprecated_member_use
   var phararmacyList = List<Pharmacy.Result>().obs;
   Pharmacy.Result selectedValue = Pharmacy.Result(
@@ -37,6 +38,7 @@ class MyTaskController extends GetxController {
   ];
 
   var myTaskList = Result().obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -45,7 +47,7 @@ class MyTaskController extends GetxController {
   }
 
   void getPharmacy() async {
-    getPharmacyApi().then((data) {
+    getPharmacyApi("").then((data) {
       // ignore: deprecated_member_use
       phararmacyList.value = data.result;
       update();
@@ -61,10 +63,11 @@ class MyTaskController extends GetxController {
   }
 
   bool validate() {
-    print("validation is ${selectedValue.pharmacyname}");
     if (selectedValue.pharmacyname == "Nearest Medical Center") {
       mySnackbar(
-          title: Pref.getString(Pref.IS_ENGLISH)=="0"?'${getLabel("empty")}':AppConstants.EMPTY_KEY,
+          title: Pref.getString(Pref.IS_ENGLISH) == "0"
+              ? '${getLabel("empty")}'
+              : AppConstants.EMPTY_KEY,
           description: '${getLabel("select_nearest_medical_center")}');
 
       return false;
@@ -122,5 +125,6 @@ class MyTaskController extends GetxController {
 class PickUpSelction {
   String title;
   int val;
+
   PickUpSelction({this.title, this.val});
 }

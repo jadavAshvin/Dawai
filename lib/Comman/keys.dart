@@ -13,6 +13,7 @@ class Keys {
   static const String IMG_URL = "IMG_URL";
   static const String NATIONALI_FILE = "NATIONALI_FILE";
   static const String MEDICAL_CENTER = "MEDICAL_CENTER";
+  static const String CITY = "CITY";
 
 /*
   static const String NATIONALID = "NATIONALID";

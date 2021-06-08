@@ -102,7 +102,6 @@ class HomeContentController extends GetxController {
   }
 
   void searchDeliveryListByQuery(String statUSFlag) {
-    print("stsut sssss  ${AppConstants.HOME_CLICK}");
     isLoading(true);
 
     getDeliveryOrderListApi(getPrefValue(Keys.DBOYID), filterMonth.value.toString(), searchQuery.value, AppConstants.HOME_CLICK == "" ? statUSFlag : "3").then((data) {
@@ -129,8 +128,9 @@ class HomeContentController extends GetxController {
       getProfileResponse = await getProfiletApi(getPrefValue(Keys.CUSTOMERID));
       setPrefValue(Keys.IMG_URL, getProfileResponse.getprofileresult[0].profileImage);
       setPrefValue(Keys.NATIONALI_FILE, getProfileResponse.getprofileresult[0].nationalIdFile);
-      print("nnnnnnnnnnn   ${getPrefValue(Keys.NATIONALI_FILE)}");
-      print("profile is   ${getProfileResponse.getprofileresult[0].profileImage}");
+    //  print("nnnnnnnnnnn   ${getPrefValue(Keys.NATIONALI_FILE)}");
+      print("city is   ${getProfileResponse.getprofileresult[0].city}");
+      setPrefValue(Keys.CITY, getProfileResponse.getprofileresult[0].city);
       AppConstants.PROFILE_IMAGE=getProfileResponse.getprofileresult[0].profileImage;
       profilePIC.value=getProfileResponse.getprofileresult[0].profileImage;
       Get.forceAppUpdate();
